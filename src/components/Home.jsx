@@ -54,7 +54,15 @@ const Home = () => {
                   </h3>
                 </Link>
                 <p className="text-gray-700">{blog.content}</p>
-                <p className="text-gray-500">Likes: {blog.likes.length}</p>
+                <p className="text-gray-500">
+                  Likes: {blog.likesCount} | Comments: {blog.comments.length}
+                </p>
+                <p className="text-gray-500">
+                  By: {blog.createdBy ? blog.createdBy.username : "Unknown"} |
+                  PostedOn: {new Date(blog.createdAt).toLocaleString()}
+                </p>
+
+                <img src={blog.imageUrl} alt="Blog" className="w-48" />
               </div>
             ))}
           </div>
