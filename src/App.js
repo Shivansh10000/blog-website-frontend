@@ -4,7 +4,8 @@ import Home from './components/Home';
 import Auth from './components/Auth';
 import Register from './components/Register';
 import CreatePost from './components/CreatePost';
-import PostDetails from './components/PostDetails'; // Import the PostDetails component
+import PostDetails from './components/PostDetails';
+import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/register" element={<Register />} />
         <Route path="/createpost" element={<CreatePost />} />
-        <Route path="/post/:postId" element={<PostDetails />} /> {/* Add this route */}
+        <Route path="/post/:postId" element={<PostDetails />} />
+        <Route path="/profile/:userId" element={<ProfilePage />} /> {/* Add this route */}
       </Routes>
     </Router>
   );

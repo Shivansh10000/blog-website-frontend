@@ -6,6 +6,7 @@ const Home = () => {
   const [username, setUsername] = useState('guest');
   const [blogs, setBlogs] = useState([]);
   const [sortByLikes, setSortByLikes] = useState(true);
+  const [userId, setUserId] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,8 +34,30 @@ const Home = () => {
       }
     };
 
+    const fetchUserId = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:3001/auth/userid', {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const { userId } = await response.json();
+          setUserId(userId);
+        } else {
+          console.error('Error fetching user ID:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching user ID:', error);
+      }
+    };
+
     checkLoginStatus();
     fetchBlogs();
+    fetchUserId();
   }, [sortByLikes]);
 
   const toggleSort = () => {
@@ -43,6 +66,10 @@ const Home = () => {
 
   const handleCreatePost = () => {
     navigate('/createpost');
+  };
+
+  const handleProfileClick = () => {
+    navigate(`/profile/${userId}`);
   };
 
   return (
@@ -64,6 +91,7 @@ const Home = () => {
             <>
               <p>You are logged in as {username}</p>
               <button onClick={handleCreatePost}>Create a Post</button>
+              {userId && <button onClick={handleProfileClick}>My Profile</button>}
             </>
           ) : (
             <p>You are logged in as guest</p>
@@ -83,7 +111,7 @@ const Home = () => {
                   <h3>{blog.title}</h3>
                 </Link>
                 <p>{blog.content}</p>
-                <p>Likes: {blog.likes.length}</p> {/* Display the number of likes */}
+                <p>Likes: {blog.likes.length}</p>
               </div>
             ))}
           </div>
