@@ -6,6 +6,7 @@ import Register from './components/Register';
 import CreatePost from './components/CreatePost';
 import PostDetails from './components/PostDetails';
 import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
+import UpdatePost from './components/UpdatePost';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/createpost" element={<CreatePost />} />
         <Route path="/post/:postId" element={<PostDetails />} />
+        <Route path="/updatepost/:postId" element={<UpdatePost />} />
         <Route path="/profile/:userId" element={<ProfilePage />} /> {/* Add this route */}
       </Routes>
     </Router>

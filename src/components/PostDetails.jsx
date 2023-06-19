@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const PostDetails = () => {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -25,8 +27,6 @@ const PostDetails = () => {
     fetchPost();
   }, [postId]);
 
-  
-
   const fetchLoggedInUserId = async (postData) => {
     try {
       const token = localStorage.getItem('token');
@@ -39,6 +39,7 @@ const PostDetails = () => {
 
       if (response.ok) {
         const { userId } = await response.json();
+        setLoggedInUserId(userId);
         setIsLiked(postData.likes.includes(userId)); // Check if the logged-in user has liked the post
       } else {
         console.error('Error fetching logged-in user ID:', response.status);
@@ -58,12 +59,12 @@ const PostDetails = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       if (response.ok) {
         const updatedPostData = await response.json();
-        setPost(prevPost => ({
+        setPost((prevPost) => ({
           ...prevPost,
-          likes: updatedPostData.likes // Update only the likes field
+          likes: updatedPostData.likes, // Update only the likes field
         }));
         setIsLiked(!isLiked); // Toggle the isLiked state
       } else {
@@ -73,18 +74,43 @@ const PostDetails = () => {
       console.error('Error liking post:', error);
     }
   };
-  
 
   const handleLike = async () => {
     await likePost(); // Call the likePost function to update the backend
+  };
 
-    // Refresh the page
-    // window.location.reload();
+  const handleUpdatePost = () => {
+    // Redirect to the update page with the postId as a parameter
+    navigate(`/updatepost/${postId}`);
+  };
+
+  const handleDeletePost = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:3001/blogs/posts/${postId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        // Post deleted successfully, navigate to the home page
+        navigate('/');
+      } else {
+        console.error('Error deleting post:', response.status);
+      }
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
   };
 
   if (!post) {
     return <p>Loading post details...</p>;
   }
+
+  const isCurrentUserPost = post.createdBy && post.createdBy._id === loggedInUserId;
 
   return (
     <div>
@@ -97,6 +123,13 @@ const PostDetails = () => {
       <p>Created At: {post.createdAt}</p>
 
       <button onClick={handleLike}>{isLiked ? 'Liked' : 'Like'}</button>
+
+      {isCurrentUserPost && (
+        <div>
+          <button onClick={handleUpdatePost}>Update Post</button>
+          <button onClick={handleDeletePost}>Delete Post</button>
+        </div>
+      )}
 
       <h3>Comments</h3>
       {post.comments.length > 0 ? (
