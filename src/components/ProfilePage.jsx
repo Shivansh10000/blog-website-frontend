@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function ProfilePage() {
   const { userId } = useParams();
@@ -8,40 +8,67 @@ function ProfilePage() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('token'); // Retrieve the authorization token from localStorage or wherever it's stored
-        const response = await fetch(`http://localhost:3001/auth/allinfobyuid/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}` // Include the authorization token in the request headers
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `http://localhost:3001/auth/allinfobyuid/${userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        });
+        );
         if (response.ok) {
           const data = await response.json();
           setUser(data);
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error("Error fetching user data:", error);
       }
     };
 
     fetchUserData();
   }, [userId]);
 
-  // Render loading state while fetching user data
   if (!user) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div>
-      <h1>User Profile: {userId}</h1>
-      {/* Display user profile data */}
-      <img src={user.imageUrl} alt="ProfilePic" />
-      <p>Username: {user.username}</p>
-      <p>Email: {user.email}</p>
-      <p>Friends: {user.friends.join(', ')}</p>
-      <p>Saved Blogs: {user.savedBlogs.length}</p>
-      <p>My Posts: {user.myPosts.length}</p>
-      <p>Created At: {user.createdAt}</p>
+    <div className="container mx-auto py-8">
+      <h1 className="text-4xl font-bold mb-4">User Profile: {userId}</h1>
+      <div className="flex items-center justify-center mb-4">
+        <img
+          src={user.imageUrl}
+          alt="ProfilePic"
+          className="rounded-full w-24 h-24"
+        />
+      </div>
+      <div className="flex flex-col space-y-4">
+        <div>
+          <p className="text-lg font-semibold">Username:</p>
+          <p className="text-lg">{user.username}</p>
+        </div>
+        <div>
+          <p className="text-lg font-semibold">Email:</p>
+          <p className="text-lg">{user.email}</p>
+        </div>
+        <div>
+          <p className="text-lg font-semibold">Friends:</p>
+          <p className="text-lg">{user.friends.join(", ")}</p>
+        </div>
+        <div>
+          <p className="text-lg font-semibold">Saved Blogs:</p>
+          <p className="text-lg">{user.savedBlogs.length}</p>
+        </div>
+        <div>
+          <p className="text-lg font-semibold">My Posts:</p>
+          <p className="text-lg">{user.myPosts.length}</p>
+        </div>
+        <div>
+          <p className="text-lg font-semibold">Created At:</p>
+          <p className="text-lg">{user.createdAt}</p>
+        </div>
+      </div>
     </div>
   );
 }

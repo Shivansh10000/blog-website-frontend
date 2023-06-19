@@ -7,10 +7,12 @@ import CreatePost from './components/CreatePost';
 import PostDetails from './components/PostDetails';
 import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
 import UpdatePost from './components/UpdatePost';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <Router>
+      <NavBar /> {/* Place the Navbar component here */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
