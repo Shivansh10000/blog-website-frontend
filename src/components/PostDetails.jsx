@@ -6,6 +6,7 @@ const PostDetails = () => {
   const [post, setPost] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [loggedInUserId, setLoggedInUserId] = useState(null);
+  const [commentContent, setCommentContent] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -114,12 +115,47 @@ const PostDetails = () => {
     }
   };
 
+  const handleComment = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:3001/blogs/posts/comments/${postId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            content: commentContent,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const savedComment = await response.json();
+        setPost((prevPost) => ({
+          ...prevPost,
+          comments: [...prevPost.comments, savedComment], // Update the comments array with the new comment
+        }));
+        setCommentContent(""); // Clear the comment input field
+      } else {
+        console.error("Error creating comment:", response.status);
+      }
+    } catch (error) {
+      console.error("Error creating comment:", error);
+    }
+  };
+
   if (!post) {
     return <p>Loading post details...</p>;
   }
 
   const isCurrentUserPost =
     post.createdBy && post.createdBy._id === loggedInUserId;
+
+  // Format the createdAt date
+  const formattedCreatedAt = new Date(post.createdAt).toLocaleString();
 
   return (
     <div className="bg-white rounded shadow p-6">
@@ -133,7 +169,7 @@ const PostDetails = () => {
       <p className="text-gray-600 mb-2">
         Created By: {post.createdBy ? post.createdBy.username : "Unknown"}
       </p>
-      <p className="text-gray-600 mb-4">Created At: {post.createdAt}</p>
+      <p className="text-gray-600 mb-4">Created At: {formattedCreatedAt}</p>
 
       <button
         className={`bg-blue-500 text-white font-semibold py-2 px-4 rounded ${
@@ -162,12 +198,37 @@ const PostDetails = () => {
       )}
 
       <h3 className="text-lg font-semibold mt-6 mb-2">Comments</h3>
+      <div className="mb-4">
+        <textarea
+          value={commentContent}
+          onChange={(e) => setCommentContent(e.target.value)}
+          placeholder="Write a comment..."
+          className="border rounded p-2 w-full"
+        ></textarea>
+        <button
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded mt-2"
+          onClick={handleComment}
+        >
+          Post Comment
+        </button>
+      </div>
+
       {post.comments.length > 0 ? (
-        <ul>
+        <ul className="space-y-4">
           {post.comments.map((comment) => (
-            <li key={comment._id} className="text-gray-700">
-              {comment.content} -{" "}
-              {comment.userId ? comment.userId.username : "Unknown"}
+            <li
+              key={comment._id}
+              className="text-gray-700 flex items-start space-x-4"
+            >
+              <div className="w-6/7">
+                <p className="p-2 bg-gray-100 rounded">{comment.content}</p>
+              </div>
+              <div className="w-1/7">
+                <p className="text-gray-600 mt-1">
+                  Commented By:{" "}
+                  {comment.userId ? comment.userId.username : "Unknown"}
+                </p>
+              </div>
             </li>
           ))}
         </ul>

@@ -47,22 +47,34 @@ const Home = () => {
           <div>
             <h2 className="text-2xl font-bold mb-4">Blogs</h2>
             {blogs.map((blog) => (
-              <div key={blog._id} className="mb-4">
-                <Link to={`/post/${blog._id}`}>
-                  <h3 className="text-lg font-bold hover:text-blue-500">
-                    {blog.title}
-                  </h3>
-                </Link>
-                <p className="text-gray-700">{blog.content}</p>
-                <p className="text-gray-500">
-                  Likes: {blog.likesCount} | Comments: {blog.comments.length}
-                </p>
-                <p className="text-gray-500">
-                  By: {blog.createdBy ? blog.createdBy.username : "Unknown"} |
-                  PostedOn: {new Date(blog.createdAt).toLocaleString()}
-                </p>
-
-                <img src={blog.imageUrl} alt="Blog" className="w-48" />
+              <div key={blog._id} className="mb-4 flex">
+                <div className="mr-4 w-3/4">
+                  <Link to={`/post/${blog._id}`}>
+                    <h3 className="text-lg font-bold hover:text-blue-500">
+                      {blog.title}
+                    </h3>
+                  </Link>
+                  <p className="text-gray-700">{blog.content}</p>
+                  <div className="text-gray-500 mb-2">
+                    <p>
+                      By: {blog.createdBy ? blog.createdBy.username : "Unknown"}
+                    </p>
+                    <p>
+                      Posted On: {new Date(blog.createdAt).toLocaleString()}
+                    </p>
+                  </div>
+                  <div className="text-gray-500 mb-2">
+                    <p>Likes: {blog.likesCount}</p>
+                    <p>Comments: {blog.comments.length}</p>
+                  </div>
+                </div>
+                <div className="w-1/4 h-auto flex justify-center items-center">
+                  <img
+                    src={blog.imageUrl}
+                    alt="Blog"
+                    className="h-full object-contain"
+                  />
+                </div>
               </div>
             ))}
           </div>
