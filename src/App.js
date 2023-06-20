@@ -5,14 +5,15 @@ import Auth from './components/Auth';
 import Register from './components/Register';
 import CreatePost from './components/CreatePost';
 import PostDetails from './components/PostDetails';
-import ProfilePage from './components/ProfilePage'; // Import the ProfilePage component
+import ProfilePage from './components/ProfilePage';
 import UpdatePost from './components/UpdatePost';
 import NavBar from './components/NavBar';
+import UpdateProfile from './components/UpdateProfile';
 
 function App() {
   return (
     <Router>
-      <NavBar /> {/* Place the Navbar component here */}
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
@@ -20,7 +21,11 @@ function App() {
         <Route path="/createpost" element={<CreatePost />} />
         <Route path="/post/:postId" element={<PostDetails />} />
         <Route path="/updatepost/:postId" element={<UpdatePost />} />
-        <Route path="/profile/:userId" element={<ProfilePage />} /> {/* Add this route */}
+        <Route
+          path="/update-profile/:userId"
+          element={<UpdateProfile />}
+        /> {/* Update the route with the userId parameter */}
+        <Route path="/profile/:userId" element={<ProfilePage />} />
       </Routes>
     </Router>
   );

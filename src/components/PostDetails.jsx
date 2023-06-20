@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const PostDetails = () => {
   const { postId } = useParams();
@@ -167,7 +168,14 @@ const PostDetails = () => {
       <p className="text-gray-600 mb-2">Tags: {post.tags.join(", ")}</p>
       <p className="text-gray-600 mb-4">Likes: {post.likes.length}</p>
       <p className="text-gray-600 mb-2">
-        Created By: {post.createdBy ? post.createdBy.username : "Unknown"}
+        Created By:{" "}
+        {post.createdBy ? (
+          <Link to={`/profile/${post.createdBy._id}`}>
+            {post.createdBy.username}
+          </Link>
+        ) : (
+          "Unknown"
+        )}
       </p>
       <p className="text-gray-600 mb-4">Created At: {formattedCreatedAt}</p>
 
@@ -226,7 +234,13 @@ const PostDetails = () => {
               <div className="w-1/7">
                 <p className="text-gray-600 mt-1">
                   Commented By:{" "}
-                  {comment.userId ? comment.userId.username : "Unknown"}
+                  {comment.userId ? (
+                    <Link to={`/profile/${comment.userId._id}`}>
+                      {comment.userId.username}
+                    </Link>
+                  ) : (
+                    "Unknown"
+                  )}
                 </p>
               </div>
             </li>

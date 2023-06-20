@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function ProfilePage() {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
+  const [loggedInUserId, setLoggedInUserId] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,10 +27,28 @@ function ProfilePage() {
       }
     };
 
+    const fetchLoggedInUserId = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:3001/auth/userid", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setLoggedInUserId(data.userId);
+        }
+      } catch (error) {
+        console.error("Error fetching logged-in user ID:", error);
+      }
+    };
+
     fetchUserData();
+    fetchLoggedInUserId();
   }, [userId]);
 
-  if (!user) {
+  if (!user || !loggedInUserId) {
     return <p>Loading...</p>;
   }
 
@@ -68,6 +87,15 @@ function ProfilePage() {
           <p className="text-lg font-semibold">Created At:</p>
           <p className="text-lg">{user.createdAt}</p>
         </div>
+        {loggedInUserId === userId && (
+          <Link to={`/update-profile/${userId}`}>
+            {" "}
+            {/* Pass userId as a parameter */}
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Update Profile
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
