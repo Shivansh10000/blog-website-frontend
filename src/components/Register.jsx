@@ -47,8 +47,8 @@ const Register = () => {
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-4xl font-bold mb-4">Register</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="text-4xl font-bold mb-4 text-center">Register</h1>
+      <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
         <div className="mb-4">
           <label className="text-lg">Username:</label>
           <input
@@ -95,13 +95,13 @@ const Register = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
         >
           Register
         </button>
       </form>
-      {error && <p className="text-red-500 mt-4">{error}</p>}
-      {success && <p className="text-green-500 mt-4">{success}</p>}
+      {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
+      {success && <p className="text-green-500 mt-4 text-center">{success}</p>}
     </div>
   );
 };

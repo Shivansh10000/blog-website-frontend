@@ -9,6 +9,7 @@ import ProfilePage from './components/ProfilePage';
 import UpdatePost from './components/UpdatePost';
 import NavBar from './components/NavBar';
 import UpdateProfile from './components/UpdateProfile';
+import "tailwindcss/tailwind.css";
 
 function App() {
   return (

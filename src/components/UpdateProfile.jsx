@@ -1,6 +1,5 @@
-// UpdateProfile.js
 import React, { useState } from "react";
-import { useParams } from "react-router-dom"; // Import useParams to access the userId parameter
+import { useParams } from "react-router-dom";
 
 const UpdateProfile = () => {
   const [username, setUsername] = useState("");
@@ -8,7 +7,7 @@ const UpdateProfile = () => {
   const [password, setPassword] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const { userId } = useParams(); // Get the userId from the URL parameter
+  const { userId } = useParams();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -68,60 +67,67 @@ const UpdateProfile = () => {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold mb-4">Update Profile</h1>
-      <form onSubmit={handleSubmit}>
-        {/* Form fields */}
+      <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
         <div className="mb-4">
-          <label htmlFor="username" className="text-lg font-semibold">
+          <label
+            htmlFor="username"
+            className="block text-lg font-semibold mb-1"
+          >
             Username:
           </label>
           <input
             type="text"
             id="username"
-            className="border border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md px-4 py-2 mt-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={username}
             onChange={handleUsernameChange}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="text-lg font-semibold">
+          <label htmlFor="email" className="block text-lg font-semibold mb-1">
             Email:
           </label>
           <input
             type="email"
             id="email"
-            className="border border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md px-4 py-2 mt-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={email}
             onChange={handleEmailChange}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="password" className="text-lg font-semibold">
+          <label
+            htmlFor="password"
+            className="block text-lg font-semibold mb-1"
+          >
             Password:
           </label>
           <input
             type="password"
             id="password"
-            className="border border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md px-4 py-2 mt-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={password}
             onChange={handlePasswordChange}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="imageUrl" className="text-lg font-semibold">
+          <label
+            htmlFor="imageUrl"
+            className="block text-lg font-semibold mb-1"
+          >
             Image URL:
           </label>
           <input
             type="text"
             id="imageUrl"
-            className="border border-gray-300 rounded-md px-4 py-2 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-md px-4 py-2 mt-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={imageUrl}
             onChange={handleImageUrlChange}
           />
         </div>
-        {/* End of form fields */}
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Update Profile
         </button>

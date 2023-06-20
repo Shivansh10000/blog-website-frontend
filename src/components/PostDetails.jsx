@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "tailwindcss/tailwind.css";
 
 const PostDetails = () => {
   const { postId } = useParams();
@@ -159,25 +160,27 @@ const PostDetails = () => {
   const formattedCreatedAt = new Date(post.createdAt).toLocaleString();
 
   return (
-    <div className="bg-white rounded shadow p-6">
-      <h2 className="text-2xl font-bold mb-4">{post.title}</h2>
+    <div className="bg-gray-900 text-white p-8 rounded-lg">
+      <h2 className="text-4xl font-bold mb-8">{post.title}</h2>
       {post.imageUrl && (
-        <img src={post.imageUrl} alt={post.title} className="mb-4" />
+        <img src={post.imageUrl} alt={post.title} className="mb-8 rounded-lg" />
       )}
-      <p className="text-gray-700 mb-4">{post.content}</p>
-      <p className="text-gray-600 mb-2">Tags: {post.tags.join(", ")}</p>
-      <p className="text-gray-600 mb-4">Likes: {post.likes.length}</p>
-      <p className="text-gray-600 mb-2">
+      <p className="text-gray-400 text-lg leading-loose mb-8">{post.content}</p>
+      <p className="text-gray-400 text-sm mb-4">Tags: {post.tags.join(", ")}</p>
+      <p className="text-gray-400 text-sm mb-8">Likes: {post.likes.length}</p>
+      <p className="text-gray-400 text-sm mb-4">
         Created By:{" "}
         {post.createdBy ? (
-          <Link to={`/profile/${post.createdBy._id}`}>
+          <Link to={`/profile/${post.createdBy._id}`} className="text-blue-500">
             {post.createdBy.username}
           </Link>
         ) : (
           "Unknown"
         )}
       </p>
-      <p className="text-gray-600 mb-4">Created At: {formattedCreatedAt}</p>
+      <p className="text-gray-400 text-sm mb-8">
+        Created At: {formattedCreatedAt}
+      </p>
 
       <button
         className={`bg-blue-500 text-white font-semibold py-2 px-4 rounded ${
@@ -189,7 +192,7 @@ const PostDetails = () => {
       </button>
 
       {isCurrentUserPost && (
-        <div className="mt-4">
+        <div className="mt-8">
           <button
             className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded mr-2"
             onClick={handleUpdatePost}
@@ -205,13 +208,13 @@ const PostDetails = () => {
         </div>
       )}
 
-      <h3 className="text-lg font-semibold mt-6 mb-2">Comments</h3>
-      <div className="mb-4">
+      <h3 className="text-2xl font-semibold mt-12 mb-4">Comments</h3>
+      <div className="mb-8">
         <textarea
           value={commentContent}
           onChange={(e) => setCommentContent(e.target.value)}
           placeholder="Write a comment..."
-          className="border rounded p-2 w-full"
+          className="bg-gray-700 text-white rounded-lg p-4 w-full mb-4"
         ></textarea>
         <button
           className="bg-blue-500 text-white font-semibold py-2 px-4 rounded mt-2"
@@ -226,16 +229,19 @@ const PostDetails = () => {
           {post.comments.map((comment) => (
             <li
               key={comment._id}
-              className="text-gray-700 flex items-start space-x-4"
+              className="text-gray-400 flex items-start space-x-4"
             >
               <div className="w-6/7">
-                <p className="p-2 bg-gray-100 rounded">{comment.content}</p>
+                <p className="p-2 bg-gray-700 rounded-lg">{comment.content}</p>
               </div>
               <div className="w-1/7">
-                <p className="text-gray-600 mt-1">
+                <p className="text-gray-400 mt-1">
                   Commented By:{" "}
                   {comment.userId ? (
-                    <Link to={`/profile/${comment.userId._id}`}>
+                    <Link
+                      to={`/profile/${comment.userId._id}`}
+                      className="text-blue-500"
+                    >
                       {comment.userId.username}
                     </Link>
                   ) : (
@@ -247,7 +253,7 @@ const PostDetails = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-600">No comments yet</p>
+        <p className="text-gray-400">No comments yet</p>
       )}
     </div>
   );

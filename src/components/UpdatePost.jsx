@@ -71,36 +71,36 @@ const UpdatePost = () => {
   return (
     <div className="bg-white rounded shadow p-6">
       <h2 className="text-2xl font-bold mb-4">Update Post</h2>
-      <label className="block mb-2">Title:</label>
+      <label className="block mb-2 text-gray-700">Title:</label>
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full focus:outline-none focus:ring focus:border-blue-500"
       />
-      <label className="block mb-2">Content:</label>
+      <label className="block mb-2 text-gray-700">Content:</label>
       <textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full h-40 focus:outline-none focus:ring focus:border-blue-500"
       />
-      <label className="block mb-2">Tags:</label>
+      <label className="block mb-2 text-gray-700">Tags:</label>
       <input
         type="text"
         value={tags}
         onChange={(e) => setTags(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full focus:outline-none focus:ring focus:border-blue-500"
       />
-      <label className="block mb-2">Image URL:</label>
+      <label className="block mb-2 text-gray-700">Image URL:</label>
       <input
         type="text"
         value={imageUrl}
         onChange={(e) => setImageUrl(e.target.value)}
-        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full focus:outline-none focus:ring focus:border-blue-500"
       />
       <button
         onClick={handleUpdatePost}
-        className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+        className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-500"
       >
         Update Post
       </button>

@@ -53,49 +53,53 @@ function ProfilePage() {
   }
 
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-4xl font-bold mb-4">User Profile: {userId}</h1>
-      <div className="flex items-center justify-center mb-4">
-        <img
-          src={user.imageUrl}
-          alt="ProfilePic"
-          className="rounded-full w-24 h-24"
-        />
-      </div>
-      <div className="flex flex-col space-y-4">
-        <div>
-          <p className="text-lg font-semibold">Username:</p>
-          <p className="text-lg">{user.username}</p>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-900">
+      <div className="container mx-auto py-8">
+        <h1 className="text-4xl font-bold mb-4 text-white">
+          User Profile: {userId}
+        </h1>
+        <div className="flex items-center justify-center mb-4">
+          <img
+            src={user.imageUrl}
+            alt="ProfilePic"
+            className="rounded-full w-48 h-48"
+          />
         </div>
-        <div>
-          <p className="text-lg font-semibold">Email:</p>
-          <p className="text-lg">{user.email}</p>
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center">
+            <p className="text-lg font-semibold mr-2 text-white">Username:</p>
+            <p className="text-lg text-white">{user.username}</p>
+          </div>
+          <div className="flex items-center">
+            <p className="text-lg font-semibold mr-2 text-white">Email:</p>
+            <p className="text-lg text-white">{user.email}</p>
+          </div>
+          <div className="flex items-center">
+            <p className="text-lg font-semibold mr-2 text-white">Friends:</p>
+            <p className="text-lg text-white">{user.friends.join(", ")}</p>
+          </div>
+          <div className="flex items-center">
+            <p className="text-lg font-semibold mr-2 text-white">
+              Saved Blogs:
+            </p>
+            <p className="text-lg text-white">{user.savedBlogs.length}</p>
+          </div>
+          <div className="flex items-center">
+            <p className="text-lg font-semibold mr-2 text-white">My Posts:</p>
+            <p className="text-lg text-white">{user.myPosts.length}</p>
+          </div>
+          <div className="flex items-center">
+            <p className="text-lg font-semibold mr-2 text-white">Created At:</p>
+            <p className="text-lg text-white">{user.createdAt}</p>
+          </div>
+          {loggedInUserId === userId && (
+            <Link to={`/update-profile/${userId}`}>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Update Profile
+              </button>
+            </Link>
+          )}
         </div>
-        <div>
-          <p className="text-lg font-semibold">Friends:</p>
-          <p className="text-lg">{user.friends.join(", ")}</p>
-        </div>
-        <div>
-          <p className="text-lg font-semibold">Saved Blogs:</p>
-          <p className="text-lg">{user.savedBlogs.length}</p>
-        </div>
-        <div>
-          <p className="text-lg font-semibold">My Posts:</p>
-          <p className="text-lg">{user.myPosts.length}</p>
-        </div>
-        <div>
-          <p className="text-lg font-semibold">Created At:</p>
-          <p className="text-lg">{user.createdAt}</p>
-        </div>
-        {loggedInUserId === userId && (
-          <Link to={`/update-profile/${userId}`}>
-            {" "}
-            {/* Pass userId as a parameter */}
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Update Profile
-            </button>
-          </Link>
-        )}
       </div>
     </div>
   );
