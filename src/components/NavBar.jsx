@@ -49,6 +49,20 @@ const NavBar = () => {
     navigate(`/profile/${userId}`);
   };
 
+  const handleLogout = () => {
+    // Clear the token and other user-related data from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+
+    // Reset the state
+    setIsLoggedIn(false);
+    setUsername("guest");
+    setUserId("");
+
+    // Redirect to the homepage
+    navigate("/", { replace: true });
+  };
+
   return (
     <nav className="bg-blue-900 py-4">
       <div className="container mx-auto flex justify-between items-center px-4">
@@ -85,6 +99,16 @@ const NavBar = () => {
                     My Profile
                   </button>
                 )}
+                <button
+                  onClick={handleLogout}
+                  className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
+                >
+                  Logout
+                </button>
+                <div className="ml-4 text-white">Logged in as {username}</div>
+              </>
+            ) : (
+              <>
                 <Link
                   to="/auth"
                   className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
@@ -92,10 +116,8 @@ const NavBar = () => {
                 >
                   Authentication
                 </Link>
-                <div className="ml-4 text-white">Logged in as {username}</div>
+                <p className="text-white ml-4">You are logged in as guest</p>
               </>
-            ) : (
-              <p className="text-white">You are logged in as guest</p>
             )}
           </div>
         </div>

@@ -31,7 +31,8 @@ const AuthPage = () => {
         const data = await response.json();
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", data.user.username);
-        navigate("/");
+        navigate("/", { replace: true });
+        window.location.reload();
       } else {
         const errorData = await response.json();
         setError(errorData.msg);
