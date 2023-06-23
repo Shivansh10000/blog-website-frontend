@@ -15,7 +15,7 @@ const PostDetails = () => {
     const fetchPost = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/blogs/post/${postId}`
+          `https://techinfo.onrender.com/blogs/post/${postId}`
         );
         if (response.ok) {
           const postData = await response.json();
@@ -35,12 +35,15 @@ const PostDetails = () => {
   const fetchLoggedInUserId = async (postData) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3001/auth/userid", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://techinfo.onrender.com/auth/userid",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const { userId } = await response.json();
@@ -58,7 +61,7 @@ const PostDetails = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3001/blogs/posts/like/${postId}`,
+        `https://techinfo.onrender.com/blogs/posts/like/${postId}`,
         {
           method: "POST",
           headers: {
@@ -96,7 +99,7 @@ const PostDetails = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3001/blogs/posts/${postId}`,
+        `https://techinfo.onrender.com/blogs/posts/${postId}`,
         {
           method: "DELETE",
           headers: {
@@ -121,7 +124,7 @@ const PostDetails = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3001/blogs/posts/comments/${postId}`,
+        `https://techinfo.onrender.com/blogs/posts/comments/${postId}`,
         {
           method: "POST",
           headers: {

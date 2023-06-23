@@ -13,7 +13,7 @@ const UpdatePost = () => {
     const fetchPost = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/blogs/post/${postId}`
+          `https://techinfo.onrender.com/blogs/post/${postId}`
         );
         if (response.ok) {
           const postData = await response.json();
@@ -37,7 +37,7 @@ const UpdatePost = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3001/blogs/posts/${postId}`,
+        `https://techinfo.onrender.com/blogs/posts/${postId}`,
         {
           method: "PUT",
           headers: {

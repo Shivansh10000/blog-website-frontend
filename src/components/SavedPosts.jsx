@@ -10,8 +10,8 @@ const SavedPosts = () => {
   useEffect(() => {
     const fetchSavedPosts = async () => {
       const url = sortByLikes
-        ? "http://localhost:3001/blogs/posts"
-        : "http://localhost:3001/blogs/posts/bydate";
+        ? "https://techinfo.onrender.com/blogs/posts"
+        : "https://techinfo.onrender.com/blogs/posts/bydate";
 
       try {
         const response = await fetch(url);

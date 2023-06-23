@@ -11,7 +11,7 @@ function ProfilePage() {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:3001/auth/allinfobyuid/${userId}`,
+          `https://techinfo.onrender.com/auth/allinfobyuid/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -30,11 +30,14 @@ function ProfilePage() {
     const fetchLoggedInUserId = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3001/auth/userid", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://techinfo.onrender.com/auth/userid",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         if (response.ok) {
           const data = await response.json();
           setLoggedInUserId(data.userId);

@@ -10,7 +10,7 @@ const Home = () => {
     const fetchBlogs = async () => {
       const url = sortByLikes
         ? "https://techinfo.onrender.com/blogs/posts"
-        : "https://techinfo.onrender.com/posts/bydate";
+        : "https://techinfo.onrender.com/blogs/posts/bydate";
 
       try {
         const response = await fetch(url);

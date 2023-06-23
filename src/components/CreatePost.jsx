@@ -31,7 +31,7 @@ const CreatePost = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3001/blogs/post", {
+      const response = await fetch("https://techinfo.onrender.com/blogs/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -36,7 +36,7 @@ const UpdateProfile = () => {
       }
 
       const response = await fetch(
-        `http://localhost:3001/auth/update-profile/${userId}`,
+        `https://techinfo.onrender.com/auth/update-profile/${userId}`,
         {
           method: "PUT",
           headers: {
