@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 
-const Home = () => {
+const MyPosts = () => {
+  const { userId } = useParams();
   const [blogs, setBlogs] = useState([]);
   const [sortByLikes, setSortByLikes] = useState(true);
 
@@ -16,14 +17,18 @@ const Home = () => {
         const response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
-          setBlogs(data);
+          // Filter blogs based on the logged-in user
+          const filteredBlogs = data.filter(
+            (blog) => blog.createdBy._id === userId
+          );
+          setBlogs(filteredBlogs);
         }
       } catch (error) {
         console.error("Error fetching blogs:", error);
       }
     };
     fetchBlogs();
-  }, [sortByLikes]);
+  }, [sortByLikes, userId]);
 
   const toggleSort = () => {
     setSortByLikes((prevState) => !prevState);
@@ -54,7 +59,7 @@ const Home = () => {
         <div>
           {blogs.length > 0 ? (
             <div>
-              <h2 className="text-2xl font-bold mb-4">Top Blogs</h2>
+              <h2 className="text-2xl font-bold mb-4">My Posts</h2>
               {blogs.map((blog) => (
                 <div
                   key={blog._id}
@@ -104,4 +109,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default MyPosts;

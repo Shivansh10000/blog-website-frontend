@@ -9,6 +9,8 @@ import ProfilePage from './components/ProfilePage';
 import UpdatePost from './components/UpdatePost';
 import NavBar from './components/NavBar';
 import UpdateProfile from './components/UpdateProfile';
+import MyPosts from './components/MyPosts'; // Import the MyPosts component
+import SavedPosts from './components/SavedPosts'; // Import the SavedPosts component
 import "tailwindcss/tailwind.css";
 
 function App() {
@@ -25,8 +27,10 @@ function App() {
         <Route
           path="/update-profile/:userId"
           element={<UpdateProfile />}
-        /> {/* Update the route with the userId parameter */}
+        />
         <Route path="/profile/:userId" element={<ProfilePage />} />
+        <Route path="/myposts/:userId" element={<MyPosts />} /> {/* Add the route for MyPosts */}
+        <Route path="/savedposts/:userId" element={<SavedPosts />} /> {/* Add the route for SavedPosts */}
       </Routes>
     </Router>
   );

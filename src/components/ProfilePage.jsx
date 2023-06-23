@@ -75,10 +75,6 @@ function ProfilePage() {
             <p className="text-lg text-white">{user.email}</p>
           </div>
           <div className="flex items-center">
-            <p className="text-lg font-semibold mr-2 text-white">Friends:</p>
-            <p className="text-lg text-white">{user.friends.join(", ")}</p>
-          </div>
-          <div className="flex items-center">
             <p className="text-lg font-semibold mr-2 text-white">
               Saved Blogs:
             </p>

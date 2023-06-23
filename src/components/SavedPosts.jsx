@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 
-const Home = () => {
-  const [blogs, setBlogs] = useState([]);
+const SavedPosts = () => {
+  const { userId } = useParams();
+  const [savedPosts, setSavedPosts] = useState([]);
   const [sortByLikes, setSortByLikes] = useState(true);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchSavedPosts = async () => {
       const url = sortByLikes
         ? "http://localhost:3001/blogs/posts"
         : "http://localhost:3001/blogs/posts/bydate";
@@ -16,14 +17,18 @@ const Home = () => {
         const response = await fetch(url);
         if (response.ok) {
           const data = await response.json();
-          setBlogs(data);
+          // Filter blogs based on the user ID in the likes array
+          const filteredPosts = data.filter((blog) =>
+            blog.likes.includes(userId)
+          );
+          setSavedPosts(filteredPosts);
         }
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        console.error("Error fetching saved posts:", error);
       }
     };
-    fetchBlogs();
-  }, [sortByLikes]);
+    fetchSavedPosts();
+  }, [sortByLikes, userId]);
 
   const toggleSort = () => {
     setSortByLikes((prevState) => !prevState);
@@ -41,7 +46,7 @@ const Home = () => {
     <div className="bg-gray-900 text-white min-h-screen">
       <div className="container mx-auto py-8">
         <div className="mb-8 flex justify-between items-center">
-          <h1 className="text-4xl font-bold">Welcome to TechInfo</h1>
+          <h1 className="text-4xl font-bold">Saved Posts</h1>
           <nav>
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -52,10 +57,10 @@ const Home = () => {
           </nav>
         </div>
         <div>
-          {blogs.length > 0 ? (
+          {savedPosts.length > 0 ? (
             <div>
-              <h2 className="text-2xl font-bold mb-4">Top Blogs</h2>
-              {blogs.map((blog) => (
+              <h2 className="text-2xl font-bold mb-4">Your Saved Posts</h2>
+              {savedPosts.map((blog) => (
                 <div
                   key={blog._id}
                   className="mb-8 p-6 bg-gray-800 rounded-lg shadow-md"
@@ -96,7 +101,9 @@ const Home = () => {
               ))}
             </div>
           ) : (
-            <p className="text-lg text-gray-400 text-center">No blogs found</p>
+            <p className="text-lg text-gray-400 text-center">
+              No saved posts found
+            </p>
           )}
         </div>
       </div>
@@ -104,4 +111,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default SavedPosts;

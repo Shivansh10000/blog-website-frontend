@@ -49,6 +49,14 @@ const NavBar = () => {
     navigate(`/profile/${userId}`);
   };
 
+  const navigateToMyPosts = () => {
+    navigate(`/myposts/${userId}`);
+  };
+
+  const navigateToSavedPosts = () => {
+    navigate(`/savedposts/${userId}`);
+  };
+
   const handleLogout = () => {
     // Clear the token and other user-related data from localStorage
     localStorage.removeItem("token");
@@ -92,12 +100,26 @@ const NavBar = () => {
                   Create a Post
                 </button>
                 {userId && (
-                  <button
-                    onClick={navigateToProfile}
-                    className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                  >
-                    My Profile
-                  </button>
+                  <>
+                    <button
+                      onClick={navigateToMyPosts}
+                      className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
+                    >
+                      My Posts
+                    </button>
+                    <button
+                      onClick={navigateToSavedPosts}
+                      className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
+                    >
+                      Saved Posts
+                    </button>
+                    <button
+                      onClick={navigateToProfile}
+                      className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
+                    >
+                      My Profile
+                    </button>
+                  </>
                 )}
                 <button
                   onClick={handleLogout}
