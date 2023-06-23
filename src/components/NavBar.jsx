@@ -73,74 +73,80 @@ const NavBar = () => {
 
   return (
     <nav className="bg-blue-900 py-4">
-      <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="text-white font-bold text-lg">
+      <div className="container mx-auto flex flex-wrap items-center justify-between px-4">
+        <div className="text-white font-bold text-lg mb-2 w-full sm:w-auto">
           <Link to="/">TechInfo</Link>
         </div>
 
-        <div className="flex items-center">
-          <ul className="flex">
-            <li>
-              <Link
-                to="/"
-                className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-              >
-                Home
-              </Link>
-            </li>
-          </ul>
-
-          <div className="ml-auto flex items-center">
-            {isLoggedIn ? (
-              <>
-                <button
-                  onClick={navigateToCreatePost}
-                  className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                >
-                  Create a Post
-                </button>
-                {userId && (
-                  <>
-                    <button
-                      onClick={navigateToMyPosts}
-                      className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                    >
-                      My Posts
-                    </button>
-                    <button
-                      onClick={navigateToSavedPosts}
-                      className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                    >
-                      Saved Posts
-                    </button>
-                    <button
-                      onClick={navigateToProfile}
-                      className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                    >
-                      My Profile
-                    </button>
-                  </>
-                )}
-                <button
-                  onClick={handleLogout}
-                  className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                >
-                  Logout
-                </button>
-                <div className="ml-4 text-white">Logged in as {username}</div>
-              </>
-            ) : (
-              <>
+        <div className="w-full sm:w-auto flex items-center justify-between">
+          <div className="flex flex-wrap items-center">
+            <ul className="flex">
+              <li>
                 <Link
-                  to="/auth"
+                  to="/"
                   className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                  activeClassName="text-blue-500"
                 >
-                  Authentication
+                  Home
                 </Link>
-                <p className="text-white ml-4">You are logged in as guest</p>
-              </>
-            )}
+              </li>
+            </ul>
+
+            <div className="ml-auto flex items-center">
+              {isLoggedIn ? (
+                <>
+                  <button
+                    onClick={navigateToCreatePost}
+                    className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                  >
+                    Create Post
+                  </button>
+                  {userId && (
+                    <>
+                      <button
+                        onClick={navigateToMyPosts}
+                        className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                      >
+                        My Posts
+                      </button>
+                      <button
+                        onClick={navigateToSavedPosts}
+                        className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                      >
+                        Saved Posts
+                      </button>
+                      <button
+                        onClick={navigateToProfile}
+                        className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                      >
+                        My Profile
+                      </button>
+                    </>
+                  )}
+                  <button
+                    onClick={handleLogout}
+                    className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                  >
+                    Logout
+                  </button>
+                  <div className="ml-4 text-white text-xs">
+                    Logged in as {username}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/auth"
+                    className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                    activeClassName="text-blue-500"
+                  >
+                    Authentication
+                  </Link>
+                  <p className="text-white ml-4 text-xs">
+                    You are logged in as guest
+                  </p>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

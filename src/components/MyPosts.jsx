@@ -45,9 +45,9 @@ const MyPosts = () => {
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       <div className="container mx-auto py-8">
-        <div className="mb-8 flex justify-between items-center">
+        <div className="mb-8 flex flex-col sm:flex-row justify-between items-center">
           <h1 className="text-4xl font-bold">Welcome to TechInfo</h1>
-          <nav>
+          <nav className="mt-4 sm:mt-0">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={toggleSort}
@@ -65,8 +65,8 @@ const MyPosts = () => {
                   key={blog._id}
                   className="mb-8 p-6 bg-gray-800 rounded-lg shadow-md"
                 >
-                  <div className="flex">
-                    <div className="w-3/4 mr-6">
+                  <div className="flex flex-col sm:flex-row">
+                    <div className="sm:w-3/4 sm:mr-6">
                       <Link to={`/post/${blog._id}`}>
                         <h3 className="text-xl font-bold hover:text-blue-500">
                           {blog.title}
@@ -75,21 +75,21 @@ const MyPosts = () => {
                       <p className="text-gray-400 mt-2">
                         {getFirstTwoLines(blog.content)}
                       </p>
-                      <div className="text-gray-400 mt-4 flex justify-between">
+                      <div className="text-gray-400 mt-4 flex flex-col sm:flex-row justify-between">
                         <p>
                           By:{" "}
                           {blog.createdBy ? blog.createdBy.username : "Unknown"}
                         </p>
-                        <p>
+                        <p className="mt-2 sm:mt-0">
                           Posted On: {new Date(blog.createdAt).toLocaleString()}
                         </p>
                       </div>
-                      <div className="text-gray-400 mt-2 flex justify-between">
+                      <div className="text-gray-400 mt-2 flex flex-col sm:flex-row justify-between">
                         <p>Likes: {blog.likesCount}</p>
                         <p>Comments: {blog.comments.length}</p>
                       </div>
                     </div>
-                    <div className="w-1/4 h-auto flex justify-center items-center">
+                    <div className="sm:w-1/4 h-auto flex justify-center items-center">
                       <img
                         src={blog.imageUrl}
                         alt="Blog"

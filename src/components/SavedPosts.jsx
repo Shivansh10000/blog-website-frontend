@@ -45,8 +45,8 @@ const SavedPosts = () => {
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       <div className="container mx-auto py-8">
-        <div className="mb-8 flex justify-between items-center">
-          <h1 className="text-4xl font-bold">Saved Posts</h1>
+        <div className="mb-8 flex flex-col md:flex-row justify-between items-center">
+          <h1 className="text-4xl font-bold mb-4 md:mb-0">Saved Posts</h1>
           <nav>
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -65,8 +65,8 @@ const SavedPosts = () => {
                   key={blog._id}
                   className="mb-8 p-6 bg-gray-800 rounded-lg shadow-md"
                 >
-                  <div className="flex">
-                    <div className="w-3/4 mr-6">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="md:w-3/4 mr-6">
                       <Link to={`/post/${blog._id}`}>
                         <h3 className="text-xl font-bold hover:text-blue-500">
                           {blog.title}
@@ -89,11 +89,11 @@ const SavedPosts = () => {
                         <p>Comments: {blog.comments.length}</p>
                       </div>
                     </div>
-                    <div className="w-1/4 h-auto flex justify-center items-center">
+                    <div className="md:w-1/4 h-auto flex justify-center items-center mt-4 md:mt-0">
                       <img
                         src={blog.imageUrl}
                         alt="Blog"
-                        className="h-48 object-cover rounded-lg"
+                        className="h-48 w-full object-cover rounded-lg"
                       />
                     </div>
                   </div>

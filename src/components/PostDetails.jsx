@@ -192,9 +192,9 @@ const PostDetails = () => {
       </button>
 
       {isCurrentUserPost && (
-        <div className="mt-8">
+        <div className="mt-8 space-x-2">
           <button
-            className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded mr-2"
+            className="bg-yellow-500 text-white font-semibold py-2 px-4 rounded"
             onClick={handleUpdatePost}
           >
             Update Post

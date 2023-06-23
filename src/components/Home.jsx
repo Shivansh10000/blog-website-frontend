@@ -38,32 +38,34 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
-      <div className="container mx-auto py-8">
-        <div className="mb-8 flex justify-between items-center">
-          <h1 className="text-4xl font-bold">Welcome to TechInfo</h1>
-          <nav>
+    <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+      <div className="w-full h-full p-4">
+        <div className="mb-8 flex flex-col sm:flex-row justify-between items-center">
+          <h1 className="text-4xl font-bold text-center sm:text-left mb-4 sm:mb-0">
+            Welcome to TechInfo
+          </h1>
+          <nav className="text-center sm:text-right">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
               onClick={toggleSort}
             >
               {sortByLikes ? "Sort by Date" : "Sort by Likes"}
             </button>
           </nav>
         </div>
-        <div>
+        <div className="flex flex-col">
           {blogs.length > 0 ? (
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Top Blogs</h2>
+            <div className="space-y-8">
+              <h2 className="text-2xl font-bold mb-4 text-center">Top Blogs</h2>
               {blogs.map((blog) => (
                 <div
                   key={blog._id}
-                  className="mb-8 p-6 bg-gray-800 rounded-lg shadow-md"
+                  className="p-6 bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                 >
-                  <div className="flex">
-                    <div className="w-3/4 mr-6">
+                  <div className="flex flex-col sm:flex-row">
+                    <div className="w-full sm:w-3/4 mb-4 sm:mb-0">
                       <Link to={`/post/${blog._id}`}>
-                        <h3 className="text-xl font-bold hover:text-blue-500">
+                        <h3 className="text-xl font-bold hover:text-blue-500 transition-colors duration-300">
                           {blog.title}
                         </h3>
                       </Link>
@@ -84,7 +86,7 @@ const Home = () => {
                         <p>Comments: {blog.comments.length}</p>
                       </div>
                     </div>
-                    <div className="w-1/4 h-auto flex justify-center items-center">
+                    <div className="w-full sm:w-1/4 h-auto flex justify-center items-center">
                       <img
                         src={blog.imageUrl}
                         alt="Blog"
