@@ -5,6 +5,7 @@ import "tailwindcss/tailwind.css";
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [sortByLikes, setSortByLikes] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -25,16 +26,27 @@ const Home = () => {
     fetchBlogs();
   }, [sortByLikes]);
 
+  useEffect(() => {
+    // Check if the user is logged in
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
   const toggleSort = () => {
     setSortByLikes((prevState) => !prevState);
   };
 
-  const getFirstTwoLines = (content) => {
+  const getFirstLine = (content) => {
     const lines = content.split("\n");
-    if (lines.length > 2) {
-      return lines.slice(0, 2).join("\n");
+    if (lines.length > 0) {
+      return lines[0];
     }
-    return content;
+    return "";
+  };
+
+  const formatPostDate = (createdAt) => {
+    const date = new Date(createdAt);
+    return date.toLocaleDateString();
   };
 
   return (
@@ -45,12 +57,18 @@ const Home = () => {
             Welcome to TechInfo
           </h1>
           <nav className="text-center sm:text-right">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-              onClick={toggleSort}
-            >
-              {sortByLikes ? "Sort by Date" : "Sort by Likes"}
-            </button>
+            {isLoggedIn ? (
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+                onClick={toggleSort}
+              >
+                {sortByLikes ? "Sort by Date" : "Sort by Likes"}
+              </button>
+            ) : (
+              <p className="text-gray-400">
+                To access all functionalities, please log in (demo available)
+              </p>
+            )}
           </nav>
         </div>
         <div className="flex flex-col">
@@ -70,16 +88,14 @@ const Home = () => {
                         </h3>
                       </Link>
                       <p className="text-gray-400 mt-2">
-                        {getFirstTwoLines(blog.content)}
+                        {getFirstLine(blog.content)}
                       </p>
                       <div className="text-gray-400 mt-4 flex justify-between">
                         <p>
                           By:{" "}
                           {blog.createdBy ? blog.createdBy.username : "Unknown"}
                         </p>
-                        <p>
-                          Posted On: {new Date(blog.createdAt).toLocaleString()}
-                        </p>
+                        <p>Posted On: {formatPostDate(blog.createdAt)}</p>
                       </div>
                       <div className="text-gray-400 mt-2 flex justify-between">
                         <p>Likes: {blog.likesCount}</p>
@@ -90,7 +106,7 @@ const Home = () => {
                       <img
                         src={blog.imageUrl}
                         alt="Blog"
-                        className="h-48 object-cover rounded-lg"
+                        className="h-48 object-cover rounded-lg p-2"
                       />
                     </div>
                   </div>

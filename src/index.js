@@ -6,7 +6,10 @@ import "tailwindcss/tailwind.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div style={{ overflowX: "hidden" }}>
+      <App />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
+

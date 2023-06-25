@@ -79,7 +79,7 @@ function ProfilePage() {
           </div>
           <div className="flex items-center">
             <p className="text-lg font-semibold mr-2 text-white">
-              Saved Blogs:
+              Liked Blogs:
             </p>
             <p className="text-lg text-white">{user.savedBlogs.length}</p>
           </div>

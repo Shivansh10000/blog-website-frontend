@@ -83,23 +83,12 @@ const NavBar = () => {
 
         <div className="w-full sm:w-auto flex items-center justify-between">
           <div className="flex flex-wrap items-center">
-            <ul className="flex">
-              <li>
-                <Link
-                  to="/"
-                  className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4"
-                >
-                  Home
-                </Link>
-              </li>
-            </ul>
-
             <div className="ml-auto flex items-center">
               {isLoggedIn ? (
                 <>
                   <button
                     onClick={navigateToCreatePost}
-                    className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                    className="text-white px-2 sm:px-4 py-2 sm:py-1 rounded-md hover:bg-blue-800 ml-2 sm:ml-4 text-sm"
                   >
                     Create Post
                   </button>
@@ -107,19 +96,19 @@ const NavBar = () => {
                     <>
                       <button
                         onClick={navigateToMyPosts}
-                        className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                        className="text-white px-2 sm:px-4 py-2 sm:py-1 rounded-md hover:bg-blue-800 ml-2 sm:ml-4 text-sm"
                       >
                         My Posts
                       </button>
                       <button
                         onClick={navigateToSavedPosts}
-                        className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                        className="text-white px-2 sm:px-4 py-2 sm:py-1 rounded-md hover:bg-blue-800 ml-2 sm:ml-4 text-sm"
                       >
-                        Saved Posts
+                        Liked Posts
                       </button>
                       <button
                         onClick={navigateToProfile}
-                        className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                        className="text-white px-2 sm:px-4 py-2 sm:py-1 rounded-md hover:bg-blue-800 ml-2 sm:ml-4 text-sm"
                       >
                         My Profile
                       </button>
@@ -127,7 +116,7 @@ const NavBar = () => {
                   )}
                   <button
                     onClick={handleLogout}
-                    className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                    className="text-white px-2 sm:px-4 py-2 sm:py-1 rounded-md hover:bg-blue-800 ml-2 sm:ml-4 text-sm"
                   >
                     Logout
                   </button>
@@ -139,7 +128,7 @@ const NavBar = () => {
                 <>
                   <Link
                     to="/auth"
-                    className="text-white px-4 py-2 rounded-md hover:bg-blue-800 ml-4 text-sm"
+                    className="text-white px-2 sm:px-4 py-2 sm:py-1 rounded-md hover:bg-blue-800 ml-2 sm:ml-4 text-sm"
                     activeClassName="text-blue-500"
                   >
                     Authentication

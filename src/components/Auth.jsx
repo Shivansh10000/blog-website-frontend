@@ -83,6 +83,10 @@ const AuthPage = () => {
       >
         Not registered yet? Click here
       </button>
+      <div className="text-center mt-8">
+        <p className="mb-2">Demo email: temp@gmail.com</p>
+        <p className="mb-2">Demo password: 12345</p>
+      </div>
     </div>
   );
 };
