@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Blog Website Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://github.com/Shivansh10000/blog-website-frontend/assets/94700224/8f1d7e58-bec0-4c09-8c18-c9b655b34a1f" alt="Home Page" width="945">
+</p>
 
-## Available Scripts
+Welcome to the frontend of the Blog Website! This repository contains the code for the frontend of the blog website, which allows users to view and interact with blogs, post their own blogs, like, comment, and perform various other actions.
 
-In the project directory, you can run:
+The backend of this blog website is hosted separately, and you can find its repository here: [Blog Website Backend](https://github.com/Shivansh10000/blog-website-backend)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **View Blogs:** Users can explore and view blogs posted by other users. Blogs are sorted based on the total number of likes, ensuring the most liked ones appear on top.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Post Blogs:** Authenticated users can create and publish their own blogs. The website provides a user-friendly interface to write and share their thoughts.
 
-### `npm test`
+- **Like Blogs:** Users can like blogs that they find interesting. The number of likes on each blog is displayed, allowing users to see which blogs are popular.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Comment on Blogs:** Authenticated users can leave comments on blogs, engaging in discussions and providing feedback.
 
-### `npm run build`
+- **Login and Signup Functionality:** The website offers secure user authentication through a login and signup functionality.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **JWT Encryption:** To enhance security, we use JSON Web Tokens (JWT) to encrypt sensitive information like passwords, ensuring secure communication between the frontend and backend.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Protected Routes:** Sensitive routes, such as updating or deleting posts, are protected by middleware and authorization, ensuring that only the authenticated user who posted the blog can perform these actions.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Update and Delete Blogs:** Users can edit or delete their own blogs, allowing them to make changes later if needed.
 
-### `npm run eject`
+- **Save Blogs:** Users can save blogs they like to view them later in a separate section.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Sorting Options:** Users can choose to view blogs based on likes or show them in chronological order, displaying the most recent ones on top.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **MongoDB Database:** All user information, blogs, likes, and comments are stored in a MongoDB database.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Hosting:** The frontend of the blog website is hosted on Netlify, and the backend is hosted on Render.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Note:** As the website is hosted, it may take some time for blogs to load, depending on the server response.
 
-## Learn More
+<p align="center">
+  <img src="https://github.com/Shivansh10000/blog-website-frontend/assets/94700224/ecbc0846-22a6-46b6-b567-d75ab52670e7" alt="Inside a Post" width="939">
+</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **React:** The website is built using React, a popular JavaScript library for building user interfaces, providing a dynamic and interactive user experience.
 
-### Code Splitting
+- **Tailwind CSS:** We've used Tailwind CSS to style the website. Tailwind CSS is a utility-first CSS framework, offering a responsive and customizable design.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Node.js and Express.js:** The backend of the blog website is built using Node.js and Express.js, providing a robust server-side environment.
 
-### Analyzing the Bundle Size
+- **MongoDB:** We use MongoDB, a NoSQL database, to store all user information, blogs, likes, and comments.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **JWT (JSON Web Tokens):** JSON Web Tokens are used to encrypt sensitive information, ensuring secure communication between the frontend and backend.
 
-### Making a Progressive Web App
+- **Netlify and Render:** The frontend is hosted on Netlify, while the backend is hosted on Render.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<p align="center">
+  <img src="https://github.com/Shivansh10000/blog-website-frontend/assets/94700224/4b3e8203-b725-42c8-a52f-8631475a6361" alt="Features of Each Post" width="942">
+</p>
 
-### Advanced Configuration
+<p align="center">
+  <img src="https://github.com/Shivansh10000/blog-website-frontend/assets/94700224/5b4d13b8-978a-4d7f-b801-51796f9dff1e" alt="User's Saved Posts" width="934">
+</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<p align="center">
+  <img src="https://github.com/Shivansh10000/blog-website-frontend/assets/94700224/c37008ec-8f4c-4ba7-821c-64cf9d14721c" alt="Login Page" width="942">
+</p>
 
-### Deployment
+<p align="center">
+  <img src="https://github.com/Shivansh10000/blog-website-frontend/assets/94700224/a171378b-fd96-498d-aa46-add49c505c0d" alt="User Profile Page" width="927">
+</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<p align="center">
+  <img src="https://github.com/Shivansh10000/blog-website-frontend/assets/94700224/0d7c328c-16bc-4597-acda-33717012ad6c" alt="Specific Tag Show Up Only on Loggedin User's Post" width="937">
+</p>
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for exploring the frontend of our blog website! We hope you find the platform engaging and user-friendly. If you have any questions or feedback, please feel free to contact us. Enjoy reading and writing blogs!
